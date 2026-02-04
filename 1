@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>💘 Valentine ?</title>
+<style>
+body {
+font-family: 'Arial', sans-serif;
+background: linear-gradient(135deg, #ff758c, #ff7eb3);
+overflow: hidden;
+height: 100vh;
+margin: 0;
+display: flex;
+justify-content: center;
+align-items: center;
+color: white;
+}
+
+.box {
+background: rgba(255,255,255,0.15);
+padding: 30px 40px;
+border-radius: 20px;
+text-align: center;
+position: relative;
+z-index: 2;
+}
+
+h1 {
+margin-bottom: 25px;
+}
+
+button {
+font-size: 18px;
+padding: 12px 28px;
+margin: 10px;
+border: none;
+border-radius: 30px;
+cursor: pointer;
+transition: transform 0.2s;
+}
+
+.yes {
+background-color: #4CAF50;
+color: white;
+}
+
+.no {
+background-color: #f44336;
+color: white;
+position: absolute;
+}
+
+#response {
+margin-top: 20px;
+font-size: 20px;
+}
+
+/* Cœurs animés */
+.heart {
+position: fixed;
+bottom: -20px;
+font-size: 20px;
+animation: floatUp linear forwards;
+opacity: 0.8;
+}
+
+@keyframes floatUp {
+from {
+transform: translateY(0);
+opacity: 1;
+}
+to {
+transform: translateY(-110vh);
+opacity: 0;
+}
+}
+</style>
+</head>
+<body>
+
+<div class="box">
+<h1>💖 Veux-tu être ma Valentine ? 💖</h1>
+<button class="yes" onclick="yes()">Oui</button>
+<button class="no" id="noBtn">Non</button>
+<p id="response"></p>
+</div>
+
+<script>
+const noBtn = document.getElementById("noBtn");
+
+noBtn.addEventListener("mouseover", () => {
+const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+noBtn.style.left = x + "px";
+noBtn.style.top = y + "px";
+});
+
+function yes() {
+document.getElementById("response").innerHTML =
+"🥰 YES !!! J’en étais sûr(e) 💕💍";
+}
+
+/* Générateur de cœurs */
+function createHeart() {
+const heart = document.createElement("div");
+heart.classList.add("heart");
+heart.innerHTML = "💖";
+heart.style.left = Math.random() * 100 + "vw";
+heart.style.animationDuration = (3 + Math.random() * 3) + "s";
+heart.style.fontSize = (16 + Math.random() * 20) + "px";
+document.body.appendChild(heart);
+
+setTimeout(() => {
+heart.remove();
+}, 6000);
+}
+
+setInterval(createHeart, 300);
+</script>
+
+</body>
+</html>
